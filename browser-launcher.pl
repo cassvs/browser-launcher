@@ -1,6 +1,9 @@
+#!/usr/bin/perl
 use Tk;
+
+#Set up TK window:
 $mw = MainWindow->new;
-$mw->title("GLaunch");
+$mw->title("browser-launcher");
 $mw->CmdLine;
 $frame1 = $mw->Frame(-borderwidth => 2,
 		     -relief => 'ridge');
@@ -34,7 +37,8 @@ sub do_search {
 	#Detect leading "http(s)://" or domain in query, if found $url = $query, else proceed as before.
 		$url = $query;
 	} else {
-		$url = "http://duckduckgo.com/?q=$query";
+		$url = "https://duckduckgo.com/?q=$query"; #Comment this line to disable DuckDuckGo
+		#$url = "https://www.google.ca/search?q=$query"; #Uncomment this line to enable Google
 	}
 	$path = "C:\\\"Program Files (x86)\"\\\"Mozilla Firefox\"\\firefox -private-window ";
 	#print "Navigating...\n";

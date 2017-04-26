@@ -17,6 +17,7 @@ my $BROWSER_PATH = q[C:/"Program Files (x86)"/"Mozilla Firefox"/firefox];		# Fir
 #my $BROWSER_PATH = q[C:/"Program Files (x86)"/Google/Chrome/chrome];			# Google Chrome on Win64
 #chomp (my $BROWSER_PATH = `which firefox`);						# Firefox on *nix
 #chomp (my $BROWSER_PATH = `which chrome-browser`);					# Chrome on *nix
+#chomp (my $BROWSER_PATH = `which chromium-browser`);					# Chromium on *nix
 
 # Tor Browser Path (Tor not enabled by default.)
 #my $TOR_PATH = q[C:/PATH/TO/"tor browser"/browser/firefox.exe];			# Tor Browser. Change this to the location of Tor Browser on your system.
@@ -24,7 +25,7 @@ my $BROWSER_PATH = q[C:/"Program Files (x86)"/"Mozilla Firefox"/firefox];		# Fir
 # Private Session Option
 # Choose the command line option that matches your browser:
 my $PRIVATE_OPT = "-private-window";			# Firefox
-#my $PRIVATE_OPT = "--incognito";			# Chrome
+#my $PRIVATE_OPT = "--incognito";			# Chrome(ium)
 
 # Default-to-Private?
 # Set this to "yes" if you want to spawn private windows by default.
@@ -94,8 +95,11 @@ sub do_search {
 	} else {
 		$url = "$SEARCH_ENGINE_URL$query";
 	}
-	#print "Navigating...\n";
-	#system (1, "$browser $private\"$url\""); #or die "Failed to call browser! Aborting...\n";
+	
+	#Call the browser.
+	#Uncomment for *nix:
+	#system("$BROWSER_PATH $private\"$url\" &"); #or die "Failed to call browser! Aborting...\n";
+	#Uncomment for Windows:
 	exec "start", "$browser $private\"$url\"";
 	#print ("$browser $private\"$url\"");
 	#print "Success!";

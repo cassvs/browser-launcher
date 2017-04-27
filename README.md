@@ -17,3 +17,13 @@ Works on any system with:
 
 ### Why Do I Need This?:
 Because browsers are enormous. On reasonably-spec'd consumer hardware, cold-starting a browser such as Firefox can take a seriously unreasonable length of time. browser-launcher gives you a box to type in *now*, so you don't have to hold your breath while your browser heaves its bulk off disk and into memory, loads plugins, and fetches and renders multi-megabyte start pages. (Of course, most browsers support some form of the "run-in-background" feature, which keeps the aforementioned bulk in memory even when the browser is "closed". This improves start time, of course, but it uses up an awful lot of system resources *doing nothing*.)
+
+### It's Not Working!:
+The script needs to know a few things in order to work right:
+- The path to your browser's executable. (For example: `C:\Program Files\Mozilla Firefox\firefox.exe`)
+- The option that tells your browser to open a private window. (`-private-window` for Firefox, `--incognito` for Chrome)
+- The URL of your preferred search engine. (`https://www.google.com/#q=` for Google)
+- The type of system it's running on. This is mainly because of annoying differences between the quoting mechanisms of the Windows command shell and a proper shell like Bash. There are other reasons too, but most of them are related to tools and features that are missing or different on Windows.
+
+You can change these options to match your system by commenting or uncommenting preconfigured lines at the top of the script, or by adding your own lines.
+If it still doesn't work, try running the script from the command line, so you can see any error and debugging messages the script might be emitting. (eg. `$ ./browser-launcher.pl`)

@@ -81,6 +81,9 @@ MainLoop;
 
 sub do_search {
 	chomp($query);
+	$query =~ s/['"`]//g; #Strip quotes out of the query.
+	#Without the above line, entering " && echo "shell injection" " (with all quotes) into the query box 
+	#would print "shell injection" to the command line.
 	#my $private = ($privatep && !$torp) ? $PRIVATE_OPT . " " : "";
 	my $private = ($privatep) ? $PRIVATE_OPT . " " : "";
 	#my $browser = ($torp) ? $TOR_PATH : $BROWSER_PATH;
